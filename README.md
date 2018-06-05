@@ -1,5 +1,4 @@
 # code_MSCP
-Deom for MSCP which will be appeared on TGRS
 Demo for Remote Sensing Scene Classification Using Multilayer Stacked Covariance Pooling which will be appeared on TGRS
 
 Please kindly cite the paper if you use the code.
