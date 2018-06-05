@@ -1,8 +1,8 @@
 clc;clear;
 dataset_name =  'UCM21'; % UCM21; AID30;WHU19;NWPU45;
 img_type =  '*.tif';% UCM21='.tif', AID30='.jpg';WHU19='.jpg';NWPU45='.jpg';
-net_name = 'imagenet-vgg-verydeep-16'; %imagenet-vgg-verydeep-16; imagenet-caffe-alex£»
-rt_img_dir = ['D:\matlab_work_folder\classification\Scene_classification\Scene_data\',dataset_name,'\'];
+net_name = 'imagenet-vgg-verydeep-16'; %imagenet-vgg-verydeep-16; imagenet-caffe-alexï¼›
+rt_img_dir = ['D:\matlab_work_folder\classification\Scene_classification\Scene_data\',dataset_name,'\'];% change to your root
 
 
 switch(net_name)
@@ -58,11 +58,11 @@ for i = 1:10
         test_cov = convfeacov(:,test_id);
         [ KMatrix_Train ] = double(makekernl(train_cov', train_cov', param));
         [ KMatrix_Test ] = double(makekernl(train_cov', test_cov', param));
-        Ktrain = [(1:size(KMatrix_Train,1))',KMatrix_Train];     %Ñù±¾µÄĞòÁĞºÅ·ÅÔÚºË¾ØÕóÇ°Ãæ  
-        model = svmtrain(train_label', Ktrain, '-t 4 -b 1');  % ÊäÈë Ktrain    %Çó²âÊÔ¼¯ºË¾ØÕó  
-        Ktest = [(1:size(KMatrix_Test,2))', KMatrix_Test']; %Ñù±¾µÄĞòÁĞºÅ·ÅÔÚºË¾ØÕóÇ°Ãæ  
+        Ktrain = [(1:size(KMatrix_Train,1))',KMatrix_Train];     %æ ·æœ¬çš„åºåˆ—å·æ”¾åœ¨æ ¸çŸ©é˜µå‰é¢  
+        model = svmtrain(train_label', Ktrain, '-t 4 -b 1');  % è¾“å…¥ Ktrain    %æ±‚æµ‹è¯•é›†æ ¸çŸ©é˜µ  
+        Ktest = [(1:size(KMatrix_Test,2))', KMatrix_Test']; %æ ·æœ¬çš„åºåˆ—å·æ”¾åœ¨æ ¸çŸ©é˜µå‰é¢  
         tmp = ones(1,size(test_cov,2));
-        [predict_label, accuracy, P1] = svmpredict(tmp',Ktest,model,'-b 1'); % ÊäÈëKtest
+        [predict_label, accuracy, P1] = svmpredict(tmp',Ktest,model,'-b 1'); % è¾“å…¥Ktest
         [OA(i),Kappa,AA,CA(:,i),cfm(:,:,i)] = calcError(test_SL(2,:)'-1,predict_label-1,[1:no_classes]);
     else
         train_cov = convfeacov(:,train_id);
@@ -77,11 +77,11 @@ for i = 1:10
             end
             test_cov = convfeacov(:,tmp_id);
             [ KMatrix_Test ] = double(makekernl(train_cov', test_cov', param));
-            Ktrain = [(1:size(KMatrix_Train,1))',KMatrix_Train];     %Ñù±¾µÄĞòÁĞºÅ·ÅÔÚºË¾ØÕóÇ°Ãæ  
-            model = svmtrain(train_label', Ktrain, '-t 4 -b 1');  % ÊäÈë Ktrain    %Çó²âÊÔ¼¯ºË¾ØÕó  
-            Ktest = [(1:size(KMatrix_Test,2))', KMatrix_Test']; %Ñù±¾µÄĞòÁĞºÅ·ÅÔÚºË¾ØÕóÇ°Ãæ  
+            Ktrain = [(1:size(KMatrix_Train,1))',KMatrix_Train];     %æ ·æœ¬çš„åºåˆ—å·æ”¾åœ¨æ ¸çŸ©é˜µå‰é¢  
+            model = svmtrain(train_label', Ktrain, '-t 4 -b 1');  % è¾“å…¥ Ktrain    %æ±‚æµ‹è¯•é›†æ ¸çŸ©é˜µ  
+            Ktest = [(1:size(KMatrix_Test,2))', KMatrix_Test']; %æ ·æœ¬çš„åºåˆ—å·æ”¾åœ¨æ ¸çŸ©é˜µå‰é¢  
             tmp = ones(1,size(test_cov,2));
-            [predict_label_tmp, accuracy, P1] = svmpredict(tmp',Ktest,model,'-b 1'); % ÊäÈëKtest
+            [predict_label_tmp, accuracy, P1] = svmpredict(tmp',Ktest,model,'-b 1'); % è¾“å…¥Ktest
             predict_label = [predict_label;predict_label_tmp];
         end
         [OA(i),Kappa,AA,CA(:,i), cfm(:,:,i)] = calcError(test_SL(2,:)'-1,predict_label-1,[1:no_classes]);
