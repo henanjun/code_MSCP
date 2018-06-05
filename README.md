@@ -11,4 +11,4 @@ Do following steps to run the demo
 AID30 http://www.lmars.whu.edu.cn/xia/AID-project.html 
 NWPU45 http://www.escience.cn/people/gongcheng/index.html
 
-Wiritten by Nanjun He (henanjun@hnu.edu.cn)
+Wrritten by Nanjun He (henanjun@hnu.edu.cn)
