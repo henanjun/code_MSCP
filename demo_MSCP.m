@@ -2,7 +2,7 @@ clc;clear;
 dataset_name =  'UCM21'; % UCM21; AID30;WHU19;NWPU45;
 img_type =  '*.tif';% UCM21='.tif', AID30='.jpg';WHU19='.jpg';NWPU45='.jpg';
 net_name = 'imagenet-vgg-verydeep-16'; %imagenet-vgg-verydeep-16; imagenet-caffe-alex；
-rt_img_dir = ['D:\matlab_work_folder\classification\Scene_classification\Scene_data\',dataset_name,'\'];% change to your root
+rt_img_dir ='';% change to your root
 
 
 switch(net_name)
