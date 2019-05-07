@@ -23,7 +23,8 @@ for ii = 1:length(subfolders)
             I = imread(imgpath);
             I = single(I) ; % note: 255 range
             I = imresize(I, net.meta.normalization.imageSize(1:2),'bicubic') ;
-            I = I -net.meta.normalization.averageImage ;
+            sz_I = size(I)
+            I = I - imresize(net.meta.normalization.averageImage,sz_I(1:2))
             % Run the CNN.
             yres = vl_simplenn(net, I) ;         
              if count==1
